@@ -152,11 +152,17 @@ export const getNanoGraph = async (req, res) => {
   let token = await getAuthToken(credentials);
   let { graphName, startDate, endDate } = req.query;
   const currentDate = Math.floor(Date.now() / 1000);
+  const thirtyDaysInSeconds = 30 * 86400;
+const thirtyDaysAgo = currentDate - thirtyDaysInSeconds;
+
+console.log("Current Date (Epoch):", currentDate);
+console.log("30 Days Ago (Epoch):", thirtyDaysAgo);
+
   if (graphName === undefined) {
     graphName = "temperature";
   }
   if (startDate === undefined) {
-    startDate = 1706440070;
+    startDate = thirtyDaysAgo;
   }
   if (endDate === undefined) {
     endDate = currentDate;
@@ -187,7 +193,7 @@ export const getNanoGraph = async (req, res) => {
 
 //Image
 const Storage = multer.diskStorage({
-  destination: "/Users/naveenkumar/Desktop/test/nano-image/src/upload",
+  destination: "/home/ubuntu/3lions/nano-image/src/upload",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
@@ -219,7 +225,7 @@ export const uploadImage = async (req, res) => {
 
 //Image2
 const Storage2 = multer.diskStorage({
-  destination: "/Users/naveenkumar/Desktop/test/nano-image/src/upload2",
+  destination: "/home/ubuntu/3lions/nano-image/src/upload",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },

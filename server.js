@@ -30,7 +30,7 @@ app.use(cors({
 
 app.use('/sensor',sensorRoute);
 
-app.listen(4000, ()=>{
+app.listen(5001, ()=>{
     connect();
     console.log('Server Started..');
 });
